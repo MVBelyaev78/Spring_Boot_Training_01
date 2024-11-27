@@ -3,14 +3,14 @@ package com.example.springboottraining01;
 import java.util.UUID;
 
 public class Coffee {
-    private final UUID id = UUID.randomUUID();
+    private final String id = UUID.randomUUID().toString();
     private String name;
 
     public Coffee(String name) {
         this.name = name;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

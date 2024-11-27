@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 class RestApiDemoController {
-    private List<Coffee> coffees = new ArrayList<>();
+    private final List<Coffee> coffees = new ArrayList<>();
 
     public RestApiDemoController() {
         coffees.addAll(List.of(
@@ -28,7 +26,10 @@ class RestApiDemoController {
     }
 
     @GetMapping("/coffees/{id}")
-    List<Coffee> getCoffeeById(@PathVariable UUID id) {
-        return coffees.stream().filter(e -> e.getId() == id).toList();
+    List<Coffee> getCoffeeById(@PathVariable String id) {
+        return coffees
+                .stream()
+                .filter(e -> Objects.equals(e.getId(), id))
+                .toList();
     }
 }
