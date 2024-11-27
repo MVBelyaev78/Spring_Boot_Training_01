@@ -1,35 +1,45 @@
 package com.example.springboottraining01.controller;
 
 import com.example.springboottraining01.Coffee;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.springboottraining01.CoffeeList;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 @RestController
-class RestApiDemoController {
-    private final List<Coffee> coffees = new ArrayList<>();
+public class RestApiDemoController {
+    private final CoffeeList coffeeList = new CoffeeList();
 
-    public RestApiDemoController() {
-        coffees.addAll(List.of(
-                new Coffee("Café Cereza"),
-                new Coffee("Café Ganador"),
-                new Coffee("Café Lareño"),
-                new Coffee("Café Três Pontas")
-        ));
+    private RestApiDemoController() {
     }
 
     @GetMapping("/coffees")
     Iterable<Coffee> getCoffees() {
-        return coffees;
+        return coffeeList.getCoffees();
     }
 
     @GetMapping("/coffees/{id}")
-    List<Coffee> getCoffeeById(@PathVariable String id) {
-        return coffees
-                .stream()
-                .filter(e -> Objects.equals(e.getId(), id))
-                .toList();
+    Iterable<Coffee> getCoffeeById(@PathVariable String id) {
+        return coffeeList.getCoffees(id);
+    }
+
+    @PostMapping("/coffees")
+    Coffee postCoffee(@RequestBody Coffee coffee) {
+        coffeeList.addCoffee(coffee);
+        return coffee;
+    }
+
+    @PutMapping("/coffees/{id}")
+    Coffee putCoffee(@PathVariable String id, @RequestBody Coffee coffee) {
+        Coffee result = new Coffee();
+        /*int coffeeIndex = -1;
+        for (Coffee c : coffees) {
+            if (c.getId().equals(id)) {
+                coffeeIndex = coffees.indexOf(c);
+                coffees.set(coffeeIndex, coffee);
+            }
+        }
+        return (coffeeIndex == -1) ? postCoffee(coffee) : coffee;*/
+        return result;
     }
 }
