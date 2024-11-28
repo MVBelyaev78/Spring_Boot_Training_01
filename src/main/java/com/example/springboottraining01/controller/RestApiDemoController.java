@@ -1,5 +1,6 @@
 package com.example.springboottraining01.controller;
 
+import com.example.springboottraining01.CheckModifyCoffee;
 import com.example.springboottraining01.Coffee;
 import com.example.springboottraining01.CoffeeList;
 import org.springframework.http.HttpStatus;
@@ -27,15 +28,16 @@ public class RestApiDemoController {
 
     @PostMapping("/coffees")
     Coffee postCoffee(@RequestBody Coffee coffee) {
-        coffeeList.addCoffee(coffee);
-        return coffee;
+        CheckModifyCoffee result = coffeeList.addCoffee(coffee);
+        return result.getCoffee();
     }
 
     @PutMapping("/coffees/{id}")
     ResponseEntity<Coffee> putCoffee(@PathVariable String id, @RequestBody Coffee coffee) {
-        return (coffeeList.modifyCoffee(id, coffee)) ?
-                new ResponseEntity<>(coffee, HttpStatus.OK) :
-                new ResponseEntity<>(coffee, HttpStatus.CREATED);
+        CheckModifyCoffee result = coffeeList.modifyCoffee(coffee);
+        return (result.getTypeModify()) ?
+                new ResponseEntity<>(result.getCoffee(), HttpStatus.OK) :
+                new ResponseEntity<>(result.getCoffee(), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/coffees/{id}")

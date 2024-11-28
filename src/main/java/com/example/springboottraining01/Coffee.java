@@ -1,5 +1,7 @@
 package com.example.springboottraining01;
 
+import exception.NameIsAbsentException;
+
 import java.util.UUID;
 
 public class Coffee {
@@ -8,6 +10,7 @@ public class Coffee {
 
     public Coffee(String name) {
         this.name = name;
+        checkName();
     }
 
     public String getId() {
@@ -20,5 +23,12 @@ public class Coffee {
 
     public void setName(String name) {
         this.name = name;
+        checkName();
+    }
+
+    private void checkName() {
+        if (name.isEmpty()) {
+            throw new NameIsAbsentException("Coffee's name must be present");
+        }
     }
 }

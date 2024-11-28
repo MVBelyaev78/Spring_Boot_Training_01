@@ -1,5 +1,7 @@
 package com.example.springboottraining01;
 
+import exception.IdIsAlreadyPresentException;
+
 import java.util.*;
 
 public class CoffeeList {
@@ -24,6 +26,18 @@ public class CoffeeList {
                 .toList();
     }
 
+    public CheckModifyCoffee addCoffee(Coffee coffee) {
+        return mergeCoffee(coffee, true);
+    }
+
+    public CheckModifyCoffee modifyCoffee(Coffee coffee) {
+        return mergeCoffee(coffee, false);
+    }
+
+    public void deleteCoffee(String id) {
+        coffees.removeIf(e -> e.getId().equals(id));
+    }
+/*
     public void addCoffee(Coffee coffee) {
         coffees.add(coffee);
     }
@@ -43,8 +57,30 @@ public class CoffeeList {
         }
         return resultModify;
     }
+*/
+    private CheckModifyCoffee mergeCoffee(Coffee coffee, String id, Boolean addOnly) {
+        CheckModifyCoffee result;
+        Optional<Coffee> resultOptional = coffees
+                .stream()
+                .filter(e -> e.getId().equals(coffee.getId()))
+                .findFirst();
+        if (resultOptional.isEmpty()) {
+            coffees.add(coffee);
+            result = new CheckModifyCoffee(coffee, false);
+        } else if (!addOnly) {
+            coffees.stream()
+                    .filter(e -> e.getId().equals(id)
+                    .forEach(e -> {
+                        e.setName(coffee.getName());
+                    });
+            result = new CheckModifyCoffee(resultOptional.get(), true);
+        } else {
+            throw new IdIsAlreadyPresentException("The coffee with this id is already present");
+        }
+        return result;
+    }
 
-    public void deleteCoffee(String id) {
-        coffees.removeIf(e -> e.getId().equals(id));
+    private CheckModifyCoffee mergeCoffee(Coffee coffee, Boolean addOnly) {
+        return CheckModifyCoffee mergeCoffee(coffee, "", addOnly);
     }
 }
