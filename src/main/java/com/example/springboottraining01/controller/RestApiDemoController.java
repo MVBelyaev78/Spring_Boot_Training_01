@@ -2,6 +2,8 @@ package com.example.springboottraining01.controller;
 
 import com.example.springboottraining01.Coffee;
 import com.example.springboottraining01.CoffeeList;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -30,16 +32,14 @@ public class RestApiDemoController {
     }
 
     @PutMapping("/coffees/{id}")
-    Coffee putCoffee(@PathVariable String id, @RequestBody Coffee coffee) {
-        Coffee result = new Coffee();
-        /*int coffeeIndex = -1;
-        for (Coffee c : coffees) {
-            if (c.getId().equals(id)) {
-                coffeeIndex = coffees.indexOf(c);
-                coffees.set(coffeeIndex, coffee);
-            }
-        }
-        return (coffeeIndex == -1) ? postCoffee(coffee) : coffee;*/
-        return result;
+    ResponseEntity<Coffee> putCoffee(@PathVariable String id, @RequestBody Coffee coffee) {
+        return (coffeeList.modifyCoffee(id, coffee)) ?
+                new ResponseEntity<>(coffee, HttpStatus.OK) :
+                new ResponseEntity<>(coffee, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/coffees/{id}")
+    void deleteCoffee(@PathVariable String id) {
+        coffeeList.deleteCoffee(id);
     }
 }
