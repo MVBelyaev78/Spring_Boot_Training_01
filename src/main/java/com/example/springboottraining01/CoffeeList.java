@@ -23,12 +23,11 @@ public class CoffeeList {
     }
 
     public CheckModifyCoffee setCoffee(String id, Coffee coffee) {
-        final Optional<Coffee> coffeeOptional = getCoffeeById(id);
         CheckModifyCoffee coffeeResult;
-        if (coffeeOptional.isEmpty()) {
+        if (getCoffeeById(id).isEmpty()) {
             coffeeResult = addCoffee(coffee, CheckModifyCoffee.getSet);
         } else {
-            coffees.set(coffees.indexOf(getCoffeeById(id)), coffee);
+            coffees.set(coffees.indexOf(getCoffeeById(id).get()), coffee);
             coffeeResult = new CheckModifyCoffee(coffee, CheckModifyCoffee.getOK);
         }
         return coffeeResult;
