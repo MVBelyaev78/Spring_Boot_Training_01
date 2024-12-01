@@ -2,7 +2,7 @@ package com.example.springboottraining01.controller;
 
 import com.example.springboottraining01.service.CheckModifyCoffee;
 import com.example.springboottraining01.service.Coffee;
-import com.example.springboottraining01.CoffeeList;
+import com.example.springboottraining01.service.CoffeeList;
 import com.example.springboottraining01.service.TransformIntoHttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/coffees")
 public class RestApiDemoController {
-    private final CoffeeList coffeeList = new CoffeeList();
+    private final CoffeeList coffeeList;
 
-    private RestApiDemoController() {
+    private RestApiDemoController(CoffeeList coffeeList) {
+        this.coffeeList = coffeeList;
     }
 
     @GetMapping

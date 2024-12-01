@@ -1,11 +1,10 @@
-package com.example.springboottraining01;
+package com.example.springboottraining01.service;
 
-import com.example.springboottraining01.service.CheckModifyCoffee;
-import com.example.springboottraining01.service.Coffee;
-import com.example.springboottraining01.service.Test;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CoffeeList {
     private final ArrayList<Coffee> coffees = Test.initCoffeeList();
 
