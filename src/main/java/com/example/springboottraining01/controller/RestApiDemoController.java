@@ -3,7 +3,7 @@ package com.example.springboottraining01.controller;
 import com.example.springboottraining01.service.CheckModifyCoffee;
 import com.example.springboottraining01.service.Coffee;
 import com.example.springboottraining01.CoffeeList;
-import com.example.springboottraining01.TransformIntoHttpStatus;
+import com.example.springboottraining01.service.TransformIntoHttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
