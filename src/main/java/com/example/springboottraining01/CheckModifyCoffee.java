@@ -1,19 +1,8 @@
 package com.example.springboottraining01;
 
-public class CheckModifyCoffee {
-    private final Coffee coffee;
-    private final Boolean typeModify;
-
-    public CheckModifyCoffee(Coffee coffee, Boolean typeModify) {
-        this.coffee = coffee;
-        this.typeModify = typeModify;
-    }
-
-    public Coffee getCoffee() {
-        return coffee;
-    }
-
-    public Boolean getTypeModify() {
-        return typeModify;
-    }
+public record CheckModifyCoffee(Coffee coffee, Integer typeModify) {
+    public static final Integer getOK = 0;
+    public static final Integer getSet = 1;
+    //
+    public static final Integer getNonExisis = -1;
 }
