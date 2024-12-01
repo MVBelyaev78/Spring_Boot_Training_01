@@ -1,4 +1,4 @@
-package com.example.springboottraining01;
+package com.example.springboottraining01.service;
 
 import exception.NameIsAbsentException;
 

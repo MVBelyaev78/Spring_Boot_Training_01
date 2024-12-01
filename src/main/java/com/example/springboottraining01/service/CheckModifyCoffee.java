@@ -1,4 +1,4 @@
-package com.example.springboottraining01;
+package com.example.springboottraining01.service;
 
 public record CheckModifyCoffee(Coffee coffee, Integer typeModify) {
     public static final Integer getOK = 0;

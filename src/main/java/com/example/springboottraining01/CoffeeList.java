@@ -1,5 +1,8 @@
 package com.example.springboottraining01;
 
+import com.example.springboottraining01.service.CheckModifyCoffee;
+import com.example.springboottraining01.service.Coffee;
+
 import java.util.*;
 
 public class CoffeeList {

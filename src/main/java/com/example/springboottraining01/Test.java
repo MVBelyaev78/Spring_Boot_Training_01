@@ -1,5 +1,7 @@
 package com.example.springboottraining01;
 
+import com.example.springboottraining01.service.Coffee;
+
 import java.util.ArrayList;
 import java.util.List;
 

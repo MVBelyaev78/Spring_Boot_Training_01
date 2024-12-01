@@ -1,7 +1,7 @@
 package com.example.springboottraining01.controller;
 
-import com.example.springboottraining01.CheckModifyCoffee;
-import com.example.springboottraining01.Coffee;
+import com.example.springboottraining01.service.CheckModifyCoffee;
+import com.example.springboottraining01.service.Coffee;
 import com.example.springboottraining01.CoffeeList;
 import com.example.springboottraining01.TransformIntoHttpStatus;
 import org.springframework.http.ResponseEntity;
