@@ -1,12 +1,10 @@
-package com.example.springboottraining01;
-
-import com.example.springboottraining01.service.Coffee;
+package com.example.springboottraining01.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Test {
-    static ArrayList<Coffee> initCoffeeList() {
+public class Test {
+    public static ArrayList<Coffee> initCoffeeList() {
         return new ArrayList<>(List.of(
                 new Coffee("Café Cereza"),
                 new Coffee("Café Ganador"),
