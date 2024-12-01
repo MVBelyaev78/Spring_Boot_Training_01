@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-
 @RestController
 public class RestApiDemoController {
     private final CoffeeList coffeeList = new CoffeeList();
@@ -29,12 +27,12 @@ public class RestApiDemoController {
 
     @PostMapping("/coffees")
     ResponseEntity<Coffee> postCoffee(@RequestBody Coffee coffee) {
-        return getCcreatedResponseEntity(coffeeList.addCoffee(coffee));
+        return getCreatedResponseEntity(coffeeList.addCoffee(coffee));
     }
 
     @PutMapping("/coffees/{id}")
     ResponseEntity<Coffee> putCoffee(@PathVariable String id, @RequestBody Coffee coffee) {
-        return getCcreatedResponseEntity(coffeeList.setCoffee(id, coffee));
+        return getCreatedResponseEntity(coffeeList.setCoffee(id, coffee));
     }
 
     @DeleteMapping("/coffees/{id}")
@@ -42,7 +40,7 @@ public class RestApiDemoController {
         coffeeList.deleteCoffee(id);
     }
 
-    private ResponseEntity<Coffee> getCcreatedResponseEntity(CheckModifyCoffee checkModifyCoffee) {
+    private ResponseEntity<Coffee> getCreatedResponseEntity(CheckModifyCoffee checkModifyCoffee) {
         return new ResponseEntity<>(checkModifyCoffee.coffee(),
                 HttpStatus.valueOf(TransformIntoHttpStatusCode.getTransValue(checkModifyCoffee.typeModify())));
     }
